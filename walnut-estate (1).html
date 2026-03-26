@@ -69,17 +69,24 @@ body {
 nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 1000;
-  padding: 24px 56px;
+  padding: 20px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: background .4s, padding .4s, box-shadow .4s;
+  /* Always visible: subtle dark glass on hero, turns light on scroll */
+  background: rgba(30, 16, 12, 0.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(238,220,194,0.08);
 }
 nav.scrolled {
-  background: rgba(254,250,244,0.96);
-  backdrop-filter: blur(16px);
-  padding: 16px 56px;
-  box-shadow: 0 2px 30px rgba(75,46,46,0.07);
+  background: rgba(252, 248, 242, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 14px 48px;
+  box-shadow: 0 4px 32px rgba(75,46,46,0.09);
+  border-bottom: 1px solid rgba(75,46,46,0.07);
 }
 
 /* Logo */
@@ -90,13 +97,18 @@ nav.scrolled {
   text-decoration: none;
 }
 .logo-mark {
-  width: 44px; height: 44px;
-  background: var(--walnut);
+  width: 42px; height: 42px;
+  background: var(--cream);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
+  transition: background .4s;
+  overflow: hidden;
 }
-.logo-mark svg { width: 24px; height: 24px; fill: var(--cream); }
+nav.scrolled .logo-mark { background: var(--walnut); }
+.logo-mark svg { width: 22px; height: 22px; fill: var(--walnut); transition: fill .4s; }
+.logo-mark img { width: 22px; height: 22px; object-fit: contain; transform: scale(2.0); }
+nav.scrolled .logo-mark svg { fill: var(--cream); }
 .logo-text {
   display: flex;
   flex-direction: column;
@@ -107,55 +119,64 @@ nav.scrolled {
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 3px;
-  color: var(--walnut);
+  color: var(--cream-lt);
   text-transform: uppercase;
+  transition: color .4s;
 }
+nav.scrolled .logo-text-main { color: var(--walnut); }
+
 .logo-text-sub {
   font-size: 9px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(238,220,194,0.6);
   font-weight: 300;
   margin-top: 2px;
+  transition: color .4s;
 }
+nav.scrolled .logo-text-sub { color: var(--muted); }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 38px;
+  gap: 36px;
   list-style: none;
 }
 .nav-links a {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--walnut);
+  color: rgba(238,220,194,0.88);
   text-decoration: none;
   position: relative;
   transition: color .3s;
 }
+nav.scrolled .nav-links a { color: var(--walnut); }
 .nav-links a::after {
   content: '';
   position: absolute;
   bottom: -3px; left: 0;
   width: 0; height: 1.5px;
-  background: var(--walnut);
+  background: currentColor;
   border-radius: 2px;
   transition: width .3s;
 }
 .nav-links a:hover::after { width: 100%; }
 
 .nav-cta {
-  background: var(--walnut);
-  color: var(--cream) !important;
-  padding: 10px 24px;
+  background: var(--cream) !important;
+  color: var(--walnut) !important;
+  padding: 9px 22px;
   border-radius: 50px !important;
   letter-spacing: 1.5px !important;
-  transition: background .3s !important;
+  font-weight: 600 !important;
+  transition: background .3s, color .3s !important;
 }
 .nav-cta::after { display: none !important; }
-.nav-cta:hover { background: var(--walnut-dk) !important; }
+.nav-cta:hover { background: var(--walnut) !important; color: var(--cream) !important; }
+nav.scrolled .nav-cta { background: var(--walnut) !important; color: var(--cream) !important; }
+nav.scrolled .nav-cta:hover { background: var(--walnut-dk) !important; }
 
 /* Hamburger (mobile) */
 .nav-hamburger {
@@ -1310,26 +1331,56 @@ footer {
 }
 .footer-legal a:hover { color: var(--cream-dk); }
 
-/* WhatsApp float */
-.wa-float {
+/* Sticky WhatsApp Button */
+.sticky-contact {
   position: fixed;
-  bottom: 32px; right: 32px;
-  width: 58px; height: 58px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  bottom: 40px;
+  right: 30px;
+  display: flex;
   z-index: 900;
-  box-shadow: 0 8px 28px rgba(37,211,102,.4);
+}
+.sticky-btn {
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
   text-decoration: none;
   cursor: none;
-  transition: transform .3s, box-shadow .3s;
-  animation: waBounce 2.5s 2s ease-in-out infinite;
+  transition: all .3s;
+  box-shadow: 0 8px 24px rgba(75,46,46,0.2);
+  border: none;
+  background: var(--walnut);
 }
-.wa-float:hover { transform: scale(1.12); box-shadow: 0 12px 36px rgba(37,211,102,.55); }
-.wa-float svg { width: 28px; height: 28px; fill: white; }
-@keyframes waBounce {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+.sticky-btn-whatsapp {
+  display: block !important;
+}
+.sticky-btn-call,
+.sticky-btn-email {
+  display: none !important;
+}
+.sticky-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(75,46,46,0.3);
+  background: var(--cream);
+}
+.sticky-btn svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--cream);
+  stroke: none;
+  stroke-width: 0;
+  transition: fill .3s;
+}
+.sticky-btn:hover svg {
+  fill: var(--walnut);
+}
+@media (max-width: 768px) {
+  .sticky-contact { bottom: 20px; right: 16px; }
+  .sticky-btn { padding: 12px 14px; }
+  .sticky-btn svg { width: 24px; height: 24px; }
 }
 
 /* img backgrounds */
@@ -1351,8 +1402,8 @@ footer {
 
 /* ══════════════ RESPONSIVE ══════════════ */
 @media (max-width: 1024px) {
-  nav { padding: 18px 24px; }
-  nav.scrolled { padding: 14px 24px; }
+  nav { padding: 16px 20px; }
+  nav.scrolled { padding: 12px 20px; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   .hero-stats-strip { display: none; }
@@ -1388,17 +1439,24 @@ footer {
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/+917234000088/" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.139.566 4.148 1.55 5.885L.057 23.617a.5.5 0 00.624.624l5.77-1.498A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 01-5.042-1.396l-.36-.215-3.742.97.993-3.655-.234-.374A9.793 9.793 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
-</a>
+<!-- Sticky Contact Buttons -->
+<div class="sticky-contact">
+  <a href="https://wa.me/+917234000088/" target="_blank" class="sticky-btn sticky-btn-whatsapp" aria-label="Chat on WhatsApp">
+    <svg fill="#25D366" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"></path><path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"></path></svg>
+  </a>
+  <a href="tel:+917234000088" class="sticky-btn sticky-btn-call" aria-label="Call Us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+  </a>
+  <a href="mailto:info@walnutestate.com" class="sticky-btn sticky-btn-email" aria-label="Email Us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+  </a>
+</div>
 
 <!-- ── NAV ── -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
     <div class="logo-mark">
-      <!-- Replace the src with your new logo file (e.g. logo.png or logo.svg) -->
-      <img src="./main log.png" alt="Walnut Estate logo" style="width:56px;height:auto;display:block;" />
+      <img src="main-logo.png" alt="Walnut Estate Logo" />
     </div>
     <div class="logo-text">
       <span class="logo-text-main">Walnut Estate</span>
@@ -1430,28 +1488,27 @@ footer {
   <div class="hero-deco-ring-2"></div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow">Delhi NCR's Finest Residences</div>
+    <div class="hero-eyebrow">Lucknow's Finest Residences</div>
 
     <h1 class="hero-headline">
       Where <em>Craft</em><br>Meets <em>Home</em>
     </h1>
 
     <p class="hero-tagline">
-      Curating extraordinary living spaces for discerning individuals across Delhi, Gurgaon & Noida.
+      Curating extraordinary living spaces for discerning individuals across Lucknow.
     </p>
 
     <!-- Embedded Search -->
     <div class="hero-search">
       <div class="hero-search-tabs">
         <button class="search-tab active" onclick="setTab(this)">Buy</button>
-        <button class="search-tab" onclick="setTab(this)">Rent</button>
         <button class="search-tab" onclick="setTab(this)">Commercial</button>
         <button class="search-tab" onclick="setTab(this)">New Projects</button>
       </div>
       <div class="hero-search-row">
         <div class="search-input-wrap">
           <div class="search-input-label">Location</div>
-          <input class="search-input-field" type="text" placeholder="Gurgaon, Noida, South Delhi…">
+          <input class="search-input-field" type="text" placeholder="Lucknow, Gomti Nagar, Indira Nagar…">
         </div>
         <div class="search-input-wrap">
           <div class="search-input-label">Property Type</div>
@@ -1542,11 +1599,11 @@ footer {
       <p class="intro-body">
         At Walnut Estate, we believe the finest address is not merely an asset — it is an experience. Every detail, from morning light through a well-placed window to the quiet hum of a perfectly engineered space, shapes the life you inhabit.
         <br><br>
-        With two decades curating Delhi NCR's most coveted residences, we bring an editorial lens to real estate — one that sees beyond square footage into the soul of a space.
+        With expertise curating Lucknow's most coveted residences, we bring an editorial lens to real estate — one that sees beyond square footage into the soul of a space.
       </p>
       <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
         <a href="#" class="btn btn-primary">Discover Our Approach</a>
-        <a href="tel:7234000088" class="text-link">📞 72340 00088</a>
+        <a href="tel:7234000088" class="text-link">72340 00088</a>
       </div>
     </div>
     <div class="intro-img-grid reveal d2">
@@ -1577,7 +1634,7 @@ footer {
       <div class="prop-info">
         <div class="prop-tag">Featured</div>
         <div class="prop-name">The Arcadia Penthouse</div>
-        <div class="prop-loc">📍 DLF 5, Gurgaon</div>
+        <div class="prop-loc">📍 Gomti Nagar, Lucknow</div>
         <div class="prop-price">₹ 8.4 Crore</div>
         <div class="prop-meta">
           <span>🛏 4 Beds</span><span>🛁 4 Baths</span><span>📐 4,200 sqft</span>
@@ -1590,7 +1647,7 @@ footer {
       <div class="prop-info">
         <div class="prop-tag">New</div>
         <div class="prop-name">Villa Serenova</div>
-        <div class="prop-loc">📍 Noida Expressway</div>
+        <div class="prop-loc">📍 Indira Nagar, Lucknow</div>
         <div class="prop-price">₹ 4.2 Crore</div>
       </div>
     </div>
@@ -1600,7 +1657,7 @@ footer {
       <div class="prop-info">
         <div class="prop-tag">Exclusive</div>
         <div class="prop-name">Meridian Heights</div>
-        <div class="prop-loc">📍 Greater Kailash, Delhi</div>
+        <div class="prop-loc">📍 Aliganj, Lucknow</div>
         <div class="prop-price">₹ 6.1 Crore</div>
       </div>
     </div>
@@ -1609,7 +1666,7 @@ footer {
       <div class="prop-overlay"></div>
       <div class="prop-info">
         <div class="prop-name">The Courtyard</div>
-        <div class="prop-loc">📍 Vasant Kunj, Delhi</div>
+        <div class="prop-loc">📍 Koyal Vihar, Lucknow</div>
         <div class="prop-price">₹ 3.8 Crore</div>
       </div>
     </div>
@@ -1619,7 +1676,7 @@ footer {
       <div class="prop-info">
         <div class="prop-tag">Golf View</div>
         <div class="prop-name">Greens Pavilion</div>
-        <div class="prop-loc">📍 Sector 42, Gurgaon</div>
+        <div class="prop-loc">📍 Alambagh, Lucknow</div>
         <div class="prop-price">₹ 5.5 Crore</div>
       </div>
     </div>
@@ -1656,7 +1713,7 @@ footer {
     <h2 class="featured-title">Palazzo<br><em>Aurelia</em></h2>
     <div class="featured-loc">
       <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      DLF Phase 1, Gurgaon · Haryana
+      Gomti Nagar Peninsula, Lucknow · Uttar Pradesh
     </div>
     <div class="featured-specs">
       <div>
@@ -1735,41 +1792,6 @@ footer {
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="testi-inner">
-    <div class="testi-eyebrow">Client Stories</div>
-    <div class="testi-slider">
-      <div class="testi-slide active">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Walnut Estate didn't just sell us a home — they understood us. They knew before we did that we needed a garden-facing study and a kitchen that caught the evening light. Palazzo Aurelia is not just where we live; it's who we are."</p>
-        <div class="testi-avatar" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80')"></div>
-        <div class="testi-name">Priya Malhotra</div>
-        <div class="testi-role">Author · New Delhi</div>
-      </div>
-      <div class="testi-slide">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"As an NRI investing from Singapore, I needed a team I could trust completely. Walnut Estate handled every detail — legal, interior, even the building committee introduction. Flawless from start to finish."</p>
-        <div class="testi-avatar" style="background-image:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80')"></div>
-        <div class="testi-name">Arjun Mehta</div>
-        <div class="testi-role">Finance Director · Singapore</div>
-      </div>
-      <div class="testi-slide">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Three investments through Walnut Estate, each one outperforming projections. Their market intelligence is genuinely unparalleled in Delhi NCR — they operate at a category all their own."</p>
-        <div class="testi-avatar" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80')"></div>
-        <div class="testi-name">Shreya Kapoor</div>
-        <div class="testi-role">Entrepreneur · Gurgaon</div>
-      </div>
-    </div>
-    <div class="testi-nav">
-      <button class="testi-dot active" onclick="setSlide(0)"></button>
-      <button class="testi-dot" onclick="setSlide(1)"></button>
-      <button class="testi-dot" onclick="setSlide(2)"></button>
-    </div>
-  </div>
-</section>
-
 <!-- NEIGHBOURHOOD -->
 <section class="neighbourhood">
   <div class="neighbourhood-inner">
@@ -1779,7 +1801,7 @@ footer {
         <h2 class="section-heading">Prime <em>Neighbourhoods</em><br>We Serve</h2>
       </div>
       <p class="nbr-body reveal d2">
-        From the leafy boulevards of DLF Gurgaon to the cosmopolitan pulse of South Delhi — we know every pocket of NCR intimately, offering unparalleled local expertise in the markets that matter most.
+        From the upscale localities of Gomti Nagar to the vibrant neighbourhoods of Indira Nagar — we know every pocket of Lucknow intimately, offering unparalleled local expertise in the markets that matter most.
       </p>
     </div>
     <div class="nbr-grid">
@@ -1787,7 +1809,7 @@ footer {
         <div class="nbr-bg i-n1"></div>
         <div class="nbr-overlay"></div>
         <div class="nbr-info">
-          <div class="nbr-name">Gurgaon</div>
+          <div class="nbr-name">Gomti Nagar</div>
           <div class="nbr-count">142 Properties</div>
         </div>
       </div>
@@ -1795,7 +1817,7 @@ footer {
         <div class="nbr-bg i-n2"></div>
         <div class="nbr-overlay"></div>
         <div class="nbr-info">
-          <div class="nbr-name">South Delhi</div>
+          <div class="nbr-name">Indira Nagar</div>
           <div class="nbr-count">98 Properties</div>
         </div>
       </div>
@@ -1803,7 +1825,7 @@ footer {
         <div class="nbr-bg i-n3"></div>
         <div class="nbr-overlay"></div>
         <div class="nbr-info">
-          <div class="nbr-name">Noida</div>
+          <div class="nbr-name">Aliganj</div>
           <div class="nbr-count">76 Properties</div>
         </div>
       </div>
@@ -1811,7 +1833,7 @@ footer {
         <div class="nbr-bg i-n4"></div>
         <div class="nbr-overlay"></div>
         <div class="nbr-info">
-          <div class="nbr-name">Dwarka Expressway</div>
+          <div class="nbr-name">Koyal Vihar</div>
           <div class="nbr-count">54 Properties</div>
         </div>
       </div>
@@ -1833,24 +1855,59 @@ footer {
       <div class="article-card featured-art reveal">
         <div class="art-img"><div class="art-img-inner i-a1"></div></div>
         <div class="art-tag">Architecture</div>
-        <h3 class="art-title">The New Delhi Villa: How Post-Pandemic Living Redefined the Modern Home</h3>
+        <h3 class="art-title">Luxury Living in Gomti Nagar: How Post-Pandemic Living Redefined the Modern Home</h3>
         <p class="art-excerpt">A deep look at how four years have transformed what luxury means in the Indian capital — from the height of ceilings to the depth of silence available.</p>
         <div class="art-meta">March 2026 <span>·</span> 8 min read</div>
       </div>
       <div class="article-card reveal d1">
         <div class="art-img"><div class="art-img-inner i-a2"></div></div>
         <div class="art-tag">Investment</div>
-        <h3 class="art-title">Dwarka Expressway: The Corridor That Rewrote NCR's Property Map</h3>
+        <h3 class="art-title">Kanpur Road: The Corridor That Rewrote Lucknow's Property Map</h3>
         <p class="art-excerpt">Why savvy investors are shifting focus westward and what infrastructure corridors mean for capital appreciation.</p>
         <div class="art-meta">Feb 2026 <span>·</span> 6 min read</div>
       </div>
       <div class="article-card reveal d2">
         <div class="art-img"><div class="art-img-inner i-a3"></div></div>
         <div class="art-tag">Design</div>
-        <h3 class="art-title">Japandi in Delhi: How Wabi-Sabi Found a Home in the NCR Interior</h3>
+        <h3 class="art-title">Japandi in Lucknow: How Wabi-Sabi Found a Home in Modern Interiors</h3>
         <p class="art-excerpt">The minimalist aesthetic dominating luxury interiors and what it says about affluent urban Indian living in 2026.</p>
         <div class="art-meta">Jan 2026 <span>·</span> 5 min read</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testi-inner">
+    <div class="testi-eyebrow">Client Stories</div>
+    <div class="testi-slider">
+      <div class="testi-slide active">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Walnut Estate didn't just sell us a home — they understood us. They knew before we did that we needed a garden-facing study and a kitchen that caught the evening light. Palazzo Aurelia is not just where we live; it's who we are."</p>
+        <div class="testi-avatar" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80')"></div>
+        <div class="testi-name">Priya Malhotra</div>
+        <div class="testi-role">Author · Lucknow</div>
+      </div>
+      <div class="testi-slide">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"As an NRI investing from Singapore, I needed a team I could trust completely. Walnut Estate handled every detail — legal, interior, even the building committee introduction. Flawless from start to finish."</p>
+        <div class="testi-avatar" style="background-image:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80')"></div>
+        <div class="testi-name">Arjun Mehta</div>
+        <div class="testi-role">Finance Director · Singapore</div>
+      </div>
+      <div class="testi-slide">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Three investments through Walnut Estate, each one outperforming projections. Their market intelligence is genuinely unparalleled in Lucknow — they operate at a category all their own."</p>
+        <div class="testi-avatar" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80')"></div>
+        <div class="testi-name">Shreya Kapoor</div>
+        <div class="testi-role">Entrepreneur · Lucknow</div>
+      </div>
+    </div>
+    <div class="testi-nav">
+      <button class="testi-dot active" onclick="setSlide(0)"></button>
+      <button class="testi-dot" onclick="setSlide(1)"></button>
+      <button class="testi-dot" onclick="setSlide(2)"></button>
     </div>
   </div>
 </section>
@@ -1864,7 +1921,7 @@ footer {
     <h2 class="cta-heading">Your <em>Extraordinary</em><br>Home Awaits</h2>
     <p class="cta-sub">Speak with a Walnut Estate advisor today — no obligation, just a conversation about what home means to you.</p>
     <div class="cta-btns">
-      <a href="tel:7234000088" class="btn btn-primary">📞 Call 72340 00088</a>
+      <a href="tel:7234000088" class="btn btn-primary">Call 72340 00088</a>
       <a href="https://wa.me/+917234000088/" class="btn btn-outline-light" target="_blank">WhatsApp Us</a>
     </div>
   </div>
@@ -1875,10 +1932,16 @@ footer {
   <div class="footer-top">
     <div>
       <div class="footer-logo">Walnut<span> Estate</span></div>
-      <p class="footer-tagline">Curating Delhi NCR's most exceptional residences since 2004. Where architecture meets aspiration, and every home tells a story.</p>
+      <p class="footer-tagline">Curating Lucknow's most exceptional residences. Where architecture meets aspiration, and every home tells a story.</p>
       <div class="footer-contact">
-        <a href="tel:7234000088">📞 72340 00088</a>
-        <a href="https://wa.me/+917234000088/" target="_blank">💬 WhatsApp Us</a>
+        <a href="tel:7234000088">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          72340 00088
+        </a>
+        <a href="https://wa.me/+917234000088/" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.139.566 4.148 1.55 5.885L.057 23.617a.5.5 0 00.624.624l5.77-1.498A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 01-5.042-1.396l-.36-.215-3.742.97.993-3.655-.234-.374A9.793 9.793 0 012.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/></svg>
+          WhatsApp Us
+        </a>
       </div>
       <div class="footer-socials">
         <a href="https://www.instagram.com/walnutestate/" target="_blank" class="social-btn" title="Instagram">
