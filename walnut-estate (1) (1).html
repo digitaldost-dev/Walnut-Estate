@@ -101,14 +101,13 @@ nav.scrolled {
 }
 .logo-mark {
   width: 42px; height: 42px;
-  background: var(--cream);
-  border-radius: 50%;
+  background: transparent;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  transition: background .4s;
+  transition: none;
   overflow: hidden;
 }
-nav.scrolled .logo-mark { background: var(--walnut); }
+nav.scrolled .logo-mark { background: transparent; }
 .logo-mark svg { width: 22px; height: 22px; fill: var(--walnut); transition: fill .4s; }
 .logo-mark img { width: 22px; height: 22px; object-fit: contain; transform: scale(2.0); }
 nav.scrolled .logo-mark svg { fill: var(--cream); }
@@ -116,9 +115,9 @@ nav.scrolled .logo-mark svg { fill: var(--cream); }
   display: flex;
   flex-direction: column;
   line-height: 1;
+  font-family: 'futura-pt', 'Futura PT', Futura, 'Century Gothic', sans-serif;
 }
 .logo-text-main {
-  font-family: 'Cormorant Garamond', serif;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 3px;
@@ -2050,7 +2049,71 @@ document.querySelectorAll('a,button,.prop-card,.nbr-card,.article-card,.service-
 // ── Navbar scroll ──
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  syncLogoVariant();
 });
+
+// ── Logo cleanup (transparent bg + cream logo mark) ──
+(function removeLogoCreamBackground() {
+  const logoImg = document.querySelector('.logo-mark img');
+  const navbar = document.getElementById('navbar');
+  if (!logoImg) return;
+
+  function buildLogoVariant(color) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return null;
+
+    canvas.width = logoImg.naturalWidth;
+    canvas.height = logoImg.naturalHeight;
+    ctx.drawImage(logoImg, 0, 0);
+
+    const image = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = image.data;
+
+    // Remove the baked cream background and recolor the logo mark.
+    const bgTarget = { r: 217, g: 200, b: 173 };
+    const bgTolerance = 26;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const dr = Math.abs(data[i] - bgTarget.r);
+      const dg = Math.abs(data[i + 1] - bgTarget.g);
+      const db = Math.abs(data[i + 2] - bgTarget.b);
+      if (dr <= bgTolerance && dg <= bgTolerance && db <= bgTolerance) {
+        data[i + 3] = 0;
+      } else if (data[i + 3] > 0) {
+        data[i] = color.r;
+        data[i + 1] = color.g;
+        data[i + 2] = color.b;
+      }
+    }
+
+    ctx.putImageData(image, 0, 0);
+    return canvas.toDataURL('image/png');
+  }
+
+  window.syncLogoVariant = function syncLogoVariant() {
+    if (!logoImg.dataset.logoCream || !logoImg.dataset.logoWalnut) return;
+    logoImg.src = navbar && navbar.classList.contains('scrolled')
+      ? logoImg.dataset.logoWalnut
+      : logoImg.dataset.logoCream;
+  };
+
+  const processLogo = () => {
+    const creamLogo = buildLogoVariant({ r: 238, g: 220, b: 194 });
+    const walnutLogo = buildLogoVariant({ r: 75, g: 46, b: 46 });
+    if (!creamLogo || !walnutLogo) return;
+
+    logoImg.dataset.logoCream = creamLogo;
+    logoImg.dataset.logoWalnut = walnutLogo;
+    syncLogoVariant();
+  };
+
+  if (logoImg.complete) {
+    processLogo();
+  } else {
+    logoImg.addEventListener('load', processLogo, { once: true });
+  }
+})();
 
 // ── Reveal on scroll ──
 const obs = new IntersectionObserver(entries => {
