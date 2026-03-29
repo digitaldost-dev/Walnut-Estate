@@ -77,66 +77,67 @@ nav {
   align-items: center;
   justify-content: space-between;
   transition: background .4s, padding .4s, box-shadow .4s;
-  /* Always visible: subtle dark glass on hero, turns light on scroll */
-  background: rgba(30, 16, 12, 0.28);
+  background: rgba(253, 247, 229, 0.46);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(238,220,194,0.08);
+  border-bottom: 1px solid rgba(75,46,46,0.1);
 }
 nav.scrolled {
-  background: rgba(252, 248, 242, 0.97);
+  background: rgba(255, 250, 235, 0.56);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 14px 48px;
-  box-shadow: 0 4px 32px rgba(75,46,46,0.09);
-  border-bottom: 1px solid rgba(75,46,46,0.07);
+  box-shadow: 0 4px 32px rgba(75,46,46,0.08);
+  border-bottom: 1px solid rgba(75,46,46,0.08);
 }
 
 /* Logo */
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   text-decoration: none;
 }
 .logo-mark {
-  width: 42px; height: 42px;
-  background: transparent;
+  width: 58px; height: 58px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(75,46,46,0.16);
+  border-radius: 16px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  transition: none;
+  transition: background .4s, border .4s;
   overflow: hidden;
 }
-nav.scrolled .logo-mark { background: transparent; }
-.logo-mark svg { width: 22px; height: 22px; fill: var(--walnut); transition: fill .4s; }
-.logo-mark img { width: 22px; height: 22px; object-fit: contain; transform: scale(2.0); }
-nav.scrolled .logo-mark svg { fill: var(--cream); }
+nav.scrolled .logo-mark { background: rgba(255,255,255,0.12); }
+.logo-mark svg { width: 28px; height: 28px; fill: var(--walnut); transition: fill .4s; }
+.logo-mark img { width: 28px; height: 28px; object-fit: contain; transform: scale(2.0); }
+nav.scrolled .logo-mark svg { fill: var(--walnut); }
 .logo-text {
   display: flex;
   flex-direction: column;
-  line-height: 1;
+  line-height: 1.05;
   font-family: 'futura-pt', 'Futura PT', Futura, 'Century Gothic', sans-serif;
 }
 .logo-text-main {
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  color: var(--cream-lt);
-  text-transform: uppercase;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--walnut);
+  text-transform: none;
   transition: color .4s;
 }
 nav.scrolled .logo-text-main { color: var(--walnut); }
 
 .logo-text-sub {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(238,220,194,0.6);
-  font-weight: 300;
-  margin-top: 2px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  color: var(--walnut);
+  font-weight: 400;
+  margin-top: 4px;
   transition: color .4s;
 }
-nav.scrolled .logo-text-sub { color: var(--muted); }
+nav.scrolled .logo-text-sub { color: var(--walnut); }
 
 .nav-links {
   display: flex;
@@ -146,10 +147,10 @@ nav.scrolled .logo-text-sub { color: var(--muted); }
 }
 .nav-links a {
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(238,220,194,0.88);
+  color: var(--walnut);
   text-decoration: none;
   position: relative;
   transition: color .3s;
@@ -2092,18 +2093,14 @@ window.addEventListener('scroll', () => {
   }
 
   window.syncLogoVariant = function syncLogoVariant() {
-    if (!logoImg.dataset.logoCream || !logoImg.dataset.logoWalnut) return;
-    logoImg.src = navbar && navbar.classList.contains('scrolled')
-      ? logoImg.dataset.logoWalnut
-      : logoImg.dataset.logoCream;
+    if (!logoImg.dataset.logoWalnut) return;
+    logoImg.src = logoImg.dataset.logoWalnut;
   };
 
   const processLogo = () => {
-    const creamLogo = buildLogoVariant({ r: 238, g: 220, b: 194 });
     const walnutLogo = buildLogoVariant({ r: 75, g: 46, b: 46 });
-    if (!creamLogo || !walnutLogo) return;
+    if (!walnutLogo) return;
 
-    logoImg.dataset.logoCream = creamLogo;
     logoImg.dataset.logoWalnut = walnutLogo;
     syncLogoVariant();
   };
