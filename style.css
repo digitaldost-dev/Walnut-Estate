@@ -1359,6 +1359,159 @@ footer {
 }
 .sticky-btn:hover svg { fill: var(--walnut); }
 
+/* ══════════════════════════════════════
+   BUY / SELL SECTION
+══════════════════════════════════════ */
+.section-copy {
+  max-width: 560px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 16px;
+}
+
+.buy-sell-page {
+  padding: 58px 24px;
+  background: rgba(255,255,255,0.95);
+}
+
+.buy-sell-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.buy-sell-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 18px;
+  margin-bottom: 22px;
+}
+
+.buy-sell-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.buy-card {
+  position: relative;
+  background: rgba(255,250,244,0.98);
+  border: 1px solid rgba(75,46,46,0.14);
+  border-radius: 26px;
+  padding: 28px;
+  box-shadow: 0 18px 42px rgba(75,46,46,0.08);
+  transition: transform .35s, box-shadow .35s;
+  overflow: hidden;
+}
+
+.buy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 56px rgba(75,46,46,0.12);
+}
+
+.card-label {
+  display: inline-flex;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--walnut);
+  margin-bottom: 16px;
+}
+
+.buy-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.buy-card p {
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+
+.card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+}
+
+.card-features li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.7;
+  min-width: calc(50% - 12px);
+}
+
+.card-features li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--walnut);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--walnut);
+  text-decoration: none;
+  transition: color .25s, transform .25s;
+}
+
+.card-link::after {
+  content: '→';
+  display: inline-block;
+  transition: transform .25s;
+}
+
+.card-link:hover {
+  color: var(--walnut-dk);
+  transform: translateX(2px);
+}
+
+.card-link:hover::after {
+  transform: translateX(3px);
+}
+
+@media (max-width: 1000px) {
+  .buy-sell-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .buy-sell-page {
+    padding: 40px 18px;
+  }
+  .buy-card {
+    padding: 22px 18px 18px;
+  }
+  .card-features li {
+    min-width: 100%;
+  }
+}
+
+
 /* img backgrounds */
 .i-intro1 { background-image: url('https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=600&q=80'); }
 .i-intro2 { background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80'); }
