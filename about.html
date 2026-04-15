@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Walnut Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@200;300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon-circle.png" type="image/png">
+<link rel="shortcut icon" href="favicon-circle.png" type="image/png">
+<link rel="apple-touch-icon" sizes="180x180" href="main-logo.png">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ══════════════════════════════════════
+   ABOUT PAGE STYLES
+══════════════════════════════════════ */
+
+/* Hero */
+.about-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.about-hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85') center/cover no-repeat;
+}
+.about-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(30,20,16,0.55) 0%, rgba(30,20,16,0.7) 100%);
+}
+.about-hero-content {
+  position: relative; z-index: 2;
+  max-width: 800px;
+  padding: 0 24px;
+}
+.about-hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--cream-dk);
+  margin-bottom: 28px;
+  opacity: .8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.about-hero-eyebrow::before,
+.about-hero-eyebrow::after {
+  content: '';
+  width: 40px; height: 1px;
+  background: var(--cream-dk);
+  opacity: .4;
+}
+.about-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 7vw, 86px);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+.about-hero h1 em {
+  font-style: italic;
+  font-weight: 300;
+}
+.about-hero-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(238,220,194,0.75);
+  line-height: 1.8;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* Manifesto */
+.about-manifesto {
+  padding: 120px 56px;
+  background: var(--parchment);
+}
+.about-manifesto-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: center;
+}
+.manifesto-left .section-eyebrow { margin-bottom: 20px; }
+.manifesto-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 32px;
+}
+.manifesto-left h2 em { font-style: italic; }
+.manifesto-text {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--muted);
+}
+.manifesto-text p { margin-bottom: 24px; }
+.manifesto-sig {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.manifesto-sig-line {
+  width: 48px; height: 1.5px;
+  background: var(--walnut);
+  opacity: .3;
+}
+.manifesto-sig-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--walnut);
+}
+
+/* Values */
+.about-values {
+  padding: 120px 56px;
+  background: var(--walnut);
+  position: relative;
+  overflow: hidden;
+}
+.about-values::before {
+  content: 'VALUES';
+  position: absolute;
+  bottom: -30px; right: -10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 180px; font-weight: 600;
+  color: rgba(238,220,194,0.03);
+  pointer-events: none;
+  letter-spacing: 12px;
+}
+.about-values-inner {
+  max-width: 1248px;
+  margin: 0 auto;
+}
+.values-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.values-header .section-eyebrow {
+  color: var(--cream-dk); opacity: .6;
+  justify-content: center;
+}
+.values-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 300;
+  color: var(--cream); line-height: 1.15;
+}
+.values-header h2 em { font-style: italic; }
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.value-card {
+  background: rgba(238,220,194,0.06);
+  border: 1px solid rgba(238,220,194,0.08);
+  border-radius: 24px;
+  padding: 48px 36px;
+  transition: background .4s, border-color .4s;
+}
+.value-card:hover {
+  background: rgba(238,220,194,0.1);
+  border-color: rgba(238,220,194,0.15);
+}
+.value-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 300;
+  color: rgba(238,220,194,0.15);
+  margin-bottom: 20px;
+  line-height: 1;
+}
+.value-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.value-desc {
+  font-size: 13px; font-weight: 300;
+  line-height: 1.8;
+  color: rgba(238,220,194,0.5);
+}
+
+/* Founder */
+.about-founder {
+  padding: 120px 56px;
+  background: var(--cream-lt);
+}
+.about-founder-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 72px;
+  align-items: center;
+}
+.founder-img {
+  width: 100%; height: 560px;
+  background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=85') center/cover;
+  border-radius: 24px;
+  box-shadow: 0 24px 72px rgba(75,46,46,0.2);
+}
+.founder-content .section-eyebrow { margin-bottom: 20px; }
+.founder-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px; font-weight: 300;
+  color: var(--ink); line-height: 1.15;
+  margin-bottom: 28px;
+}
+.founder-content h2 em { font-style: italic; }
+.founder-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300;
+  font-style: italic;
+  color: var(--walnut);
+  line-height: 1.7;
+  border-left: 3px solid var(--walnut);
+  padding-left: 24px;
+  margin-bottom: 32px;
+}
+.founder-bio {
+  font-size: 14px; font-weight: 300;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+.founder-name {
+  font-size: 16px; font-weight: 600;
+  color: var(--ink); margin-bottom: 4px;
+}
+.founder-role {
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Impact Stats */
+.about-stats {
+  background: var(--walnut);
+  padding: 72px 56px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.about-stat {
+  text-align: center;
+  padding: 28px 20px;
+  border-right: 1px solid rgba(238,220,194,0.1);
+}
+.about-stat:last-child { border-right: none; }
+.about-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px; font-weight: 300;
+  color: var(--cream); line-height: 1;
+}
+.about-stat-num sup { font-size: 20px; }
+.about-stat-label {
+  font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(238,220,194,0.4);
+  margin-top: 10px;
+}
+
+/* Journey */
+.about-journey {
+  padding: 120px 56px;
+  background: var(--parchment);
+}
+.about-journey-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.journey-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.journey-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 300;
+  color: var(--ink); line-height: 1.15;
+}
+.journey-header h2 em { font-style: italic; }
+.timeline {
+  position: relative;
+  padding-left: 48px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 14px; top: 0; bottom: 0;
+  width: 1.5px;
+  background: linear-gradient(to bottom, var(--walnut), rgba(75,46,46,0.1));
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 56px;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -41px; top: 4px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--walnut);
+  border: 3px solid var(--parchment);
+  box-shadow: 0 0 0 2px var(--walnut);
+}
+.timeline-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 300;
+  color: var(--walnut);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.timeline-title {
+  font-size: 16px; font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.timeline-desc {
+  font-size: 13px; font-weight: 300;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* Team */
+.about-team {
+  padding: 120px 56px;
+  background: white;
+}
+.about-team-inner {
+  max-width: 1248px;
+  margin: 0 auto;
+}
+.team-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.team-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 300;
+  color: var(--ink); line-height: 1.15;
+}
+.team-header h2 em { font-style: italic; }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+.team-card {
+  text-align: center;
+}
+.team-photo {
+  width: 100%; aspect-ratio: 3/4;
+  border-radius: 22px;
+  background-size: cover;
+  background-position: center top;
+  margin-bottom: 20px;
+  box-shadow: 0 12px 40px rgba(75,46,46,0.15);
+  transition: transform .4s, box-shadow .4s;
+}
+.team-card:hover .team-photo {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 56px rgba(75,46,46,0.22);
+}
+.team-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.team-role {
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Ecosystem */
+.about-ecosystem {
+  padding: 120px 56px;
+  background: var(--parchment);
+}
+.about-ecosystem-inner {
+  max-width: 1248px;
+  margin: 0 auto;
+}
+.ecosystem-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.ecosystem-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 300;
+  color: var(--ink); line-height: 1.15;
+}
+.ecosystem-header h2 em { font-style: italic; }
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.eco-card {
+  background: white;
+  border-radius: 24px;
+  padding: 48px 36px;
+  border: 1px solid rgba(75,46,46,0.06);
+  transition: transform .4s, box-shadow .4s;
+}
+.eco-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(75,46,46,0.1);
+}
+.eco-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 300;
+  color: rgba(75,46,46,0.12);
+  margin-bottom: 20px;
+  line-height: 1;
+}
+.eco-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 400;
+  color: var(--ink); margin-bottom: 14px;
+}
+.eco-desc {
+  font-size: 13px; font-weight: 300;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about-manifesto-inner { grid-template-columns: 1fr; gap: 48px; }
+  .about-founder-inner { grid-template-columns: 1fr; gap: 48px; }
+  .founder-img { height: 400px; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .ecosystem-grid { grid-template-columns: 1fr 1fr; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+  .about-manifesto, .about-values, .about-founder, .about-journey,
+  .about-team, .about-ecosystem { padding: 80px 24px; }
+}
+@media (max-width: 680px) {
+  .values-grid, .ecosystem-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .about-stats { grid-template-columns: 1fr 1fr; padding: 48px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="sticky-contact">
+  <a href="https://wa.me/+917234000088/" target="_blank" class="sticky-btn sticky-btn-whatsapp" aria-label="Chat on WhatsApp">
+    <svg fill="#25D366" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"></path><path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"></path></svg>
+  </a>
+  <a href="tel:+917234000088" class="sticky-btn sticky-btn-call" aria-label="Call Us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+  </a>
+  <a href="mailto:info@walnutestate.com" class="sticky-btn sticky-btn-email" aria-label="Email Us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+  </a>
+</div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark"><img src="main-logo.png" alt="Walnut Estate Logo" /></div>
+    <div class="logo-text">
+      <span class="logo-text-main">Walnut Estate</span>
+      <span class="logo-text-sub">The evolution of the estate</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="buy.html">Buy</a></li>
+    <li><a href="sell.html">Sell</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="tel:+917234000088" class="nav-phone">+91 72340 00088</a></li>
+    <li><a href="#" class="nav-cta">Enquire Now</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-bg"></div>
+  <div class="about-hero-overlay"></div>
+  <div class="about-hero-content reveal">
+    <div class="about-hero-eyebrow">Our Story</div>
+    <h1>Redefining How<br>Lucknow <em>Lives</em></h1>
+    <p class="about-hero-sub">We don't just sell properties. We curate lifestyles, craft legacies, and redefine what it means to call Lucknow home.</p>
+  </div>
+  <div class="scroll-cue"><div class="scroll-cue-line"></div><div class="scroll-cue-text">Scroll</div></div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="about-manifesto">
+  <div class="about-manifesto-inner">
+    <div class="manifesto-left reveal">
+      <div class="section-eyebrow">Our Manifesto</div>
+      <h2>Built on<br>Craft, Not<br><em>Convention</em></h2>
+    </div>
+    <div class="manifesto-text reveal d2">
+      <p>Walnut Estate was born from a simple conviction: that finding a home should feel as extraordinary as the home itself. In a market flooded with transactions, we chose a different path — one paved with intention, expertise, and an unwavering commitment to quality.</p>
+      <p>Every property we represent has passed through our editorial lens. We see beyond square footage and price tags. We see the morning light that fills a study. The way a courtyard breathes life into an afternoon. The silence that a well-designed space protects.</p>
+      <p>We don't compete on volume. We compete on vision. And in Lucknow's most discerning circles, that distinction has made all the difference.</p>
+      <div class="manifesto-sig">
+        <div class="manifesto-sig-line"></div>
+        <div class="manifesto-sig-name">The Walnut Estate Team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="about-values">
+  <div class="about-values-inner">
+    <div class="values-header reveal">
+      <div class="section-eyebrow" style="color:var(--cream-dk);opacity:.6;justify-content:center;">What We Stand For</div>
+      <h2>Core <em>Values</em></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-num">01</div>
+        <div class="value-title">Uncompromising Curation</div>
+        <div class="value-desc">Every listing is hand-selected. We represent fewer properties — but each one meets our rigorous 60-point excellence framework.</div>
+      </div>
+      <div class="value-card reveal d1">
+        <div class="value-num">02</div>
+        <div class="value-title">Client-First Philosophy</div>
+        <div class="value-desc">Your timeline, your vision, your terms. We adapt our expertise to fit your life — never the other way around.</div>
+      </div>
+      <div class="value-card reveal d2">
+        <div class="value-num">03</div>
+        <div class="value-title">Transparent Partnership</div>
+        <div class="value-desc">No hidden agendas. No inflated valuations. Just honest guidance backed by data, experience, and genuine care for your outcome.</div>
+      </div>
+      <div class="value-card reveal d3">
+        <div class="value-num">04</div>
+        <div class="value-title">Design Intelligence</div>
+        <div class="value-desc">We bring an architectural eye to every recommendation — helping you see the potential others miss and the value others overlook.</div>
+      </div>
+      <div class="value-card reveal d4">
+        <div class="value-num">05</div>
+        <div class="value-title">Legacy Thinking</div>
+        <div class="value-desc">A great home isn't just for today. We evaluate properties through the lens of long-term value, lifestyle evolution, and generational wealth.</div>
+      </div>
+      <div class="value-card reveal d5">
+        <div class="value-num">06</div>
+        <div class="value-title">Local Mastery</div>
+        <div class="value-desc">Lucknow is in our DNA. We know every corridor, every micro-market, every upcoming development — and use that intelligence for your benefit.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="about-founder">
+  <div class="about-founder-inner">
+    <div class="founder-img reveal"></div>
+    <div class="founder-content reveal d2">
+      <div class="section-eyebrow">Leadership</div>
+      <h2>Led by <em>Vision</em>,<br>Driven by <em>Purpose</em></h2>
+      <blockquote class="founder-quote">"Real estate is not a transaction — it's a transformation. Every key we hand over unlocks a new chapter in someone's story."</blockquote>
+      <p class="founder-bio">With over two decades of experience navigating Lucknow's luxury property market, our founding team brings a rare combination of market intelligence, design sensibility, and relentless client advocacy. What began as a boutique consultancy has grown into the city's most trusted name in premium real estate — without ever compromising the personal touch that defines us.</p>
+      <div class="founder-name">Walnut Estate Leadership</div>
+      <div class="founder-role">Founders · Lucknow</div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT STATS -->
+<div class="about-stats reveal">
+  <div class="about-stat">
+    <div class="about-stat-num">20<sup>+</sup></div>
+    <div class="about-stat-label">Years of Trust</div>
+  </div>
+  <div class="about-stat">
+    <div class="about-stat-num">840</div>
+    <div class="about-stat-label">Homes Delivered</div>
+  </div>
+  <div class="about-stat">
+    <div class="about-stat-num">₹2.1K</div>
+    <div class="about-stat-label">Crore in Transactions</div>
+  </div>
+  <div class="about-stat">
+    <div class="about-stat-num">98%</div>
+    <div class="about-stat-label">Client Satisfaction</div>
+  </div>
+</div>
+
+<!-- JOURNEY -->
+<section class="about-journey">
+  <div class="about-journey-inner">
+    <div class="journey-header reveal">
+      <div class="section-eyebrow" style="justify-content:center;">Our Journey</div>
+      <h2>Two Decades of<br><em>Excellence</em></h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2005</div>
+        <div class="timeline-title">The Beginning</div>
+        <div class="timeline-desc">Founded as a boutique property consultancy in Gomti Nagar, Lucknow — with a vision to bring integrity and quality to luxury real estate.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2010</div>
+        <div class="timeline-title">Market Leadership</div>
+        <div class="timeline-desc">Crossed 200 successful transactions and established ourselves as the preferred partner for Lucknow's most discerning buyers and sellers.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2016</div>
+        <div class="timeline-title">Design-Led Expansion</div>
+        <div class="timeline-desc">Launched our interior concierge service and design advisory — bringing end-to-end lifestyle curation under one roof.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2020</div>
+        <div class="timeline-title">Digital Transformation</div>
+        <div class="timeline-desc">Pioneered virtual viewings and AI-driven property matching for Lucknow's premium segment, reaching NRI buyers across 12 countries.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2025</div>
+        <div class="timeline-title">The Walnut Standard</div>
+        <div class="timeline-desc">Crossed ₹2,100 Crore in total transaction value. Today, the Walnut name is synonymous with trust, taste, and transformative living in Lucknow.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="about-team">
+  <div class="about-team-inner">
+    <div class="team-header reveal">
+      <div class="section-eyebrow" style="justify-content:center;">The People</div>
+      <h2>Meet Our <em>Team</em></h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80')"></div>
+        <div class="team-name">Arjun Verma</div>
+        <div class="team-role">Managing Director</div>
+      </div>
+      <div class="team-card reveal d1">
+        <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&q=80')"></div>
+        <div class="team-name">Priya Srivastava</div>
+        <div class="team-role">Head of Sales</div>
+      </div>
+      <div class="team-card reveal d2">
+        <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&q=80')"></div>
+        <div class="team-name">Rohan Kapoor</div>
+        <div class="team-role">Design Concierge</div>
+      </div>
+      <div class="team-card reveal d3">
+        <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80')"></div>
+        <div class="team-name">Ananya Mishra</div>
+        <div class="team-role">Client Relations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM -->
+<section class="about-ecosystem">
+  <div class="about-ecosystem-inner">
+    <div class="ecosystem-header reveal">
+      <div class="section-eyebrow" style="justify-content:center;">Our Ecosystem</div>
+      <h2>More Than a Brokerage —<br>A Complete <em>Platform</em></h2>
+    </div>
+    <div class="ecosystem-grid">
+      <div class="eco-card reveal">
+        <div class="eco-num">01</div>
+        <div class="eco-title">Property Curation</div>
+        <div class="eco-desc">Every listing passes our rigorous 60-point quality framework before it reaches you. We represent fewer properties — but each is exceptional.</div>
+      </div>
+      <div class="eco-card reveal d1">
+        <div class="eco-num">02</div>
+        <div class="eco-title">Investment Intelligence</div>
+        <div class="eco-desc">Data-driven market insights, corridor-level analysis, and yield projections that help you make decisions with confidence.</div>
+      </div>
+      <div class="eco-card reveal d2">
+        <div class="eco-num">03</div>
+        <div class="eco-title">Walnut Studios</div>
+        <div class="eco-desc">Our in-house creative arm produces cinematic property films, architectural photography, and immersive virtual experiences.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content">
+    <div class="cta-eyebrow">Begin Your Journey</div>
+    <h2 class="cta-heading">Your <em>Extraordinary</em><br>Home Awaits</h2>
+    <p class="cta-sub">Speak with a Walnut Estate advisor today — no obligation, just a conversation about what home means to you.</p>
+    <div class="cta-btns">
+      <a href="tel:7234000088" class="btn btn-primary">Call 72340 00088</a>
+      <a href="https://wa.me/+917234000088/" class="btn btn-outline-light" target="_blank">WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">
+        <img src="main-logo.png" alt="Walnut Estate" class="footer-logo-img" />
+        <div class="footer-logo">Walnut Estate</div>
+      </div>
+      <p class="footer-tagline">The evolution of the estate</p>
+      <div class="footer-contact">
+        <a href="tel:7234000088"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>72340 00088</a>
+        <a href="mailto:info@walnutestate.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>info@walnutestate.com</a>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/walnutestate/" target="_blank" class="social-btn" title="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/walnutestate" target="_blank" class="social-btn" title="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://x.com/WalnutEstate" target="_blank" class="social-btn" title="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/company/walnut-estate/" target="_blank" class="social-btn" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Properties</div>
+      <ul class="footer-links">
+        <li><a href="#">Luxury Villas</a></li>
+        <li><a href="#">Penthouses</a></li>
+        <li><a href="#">Golf Residences</a></li>
+        <li><a href="#">Farmhouses</a></li>
+        <li><a href="#">Investment Plots</a></li>
+        <li><a href="#">New Launches</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#">Property Curation</a></li>
+        <li><a href="#">Investment Advisory</a></li>
+        <li><a href="#">Interior Concierge</a></li>
+        <li><a href="#">Private Sales</a></li>
+        <li><a href="#">NRI Services</a></li>
+        <li><a href="#">Legal Assistance</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">The Team</a></li>
+        <li><a href="#">Press &amp; Media</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Walnut Estate. All Rights Reserved. RERA Reg. No. UP/RERA/2019/12345</div>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Cookie Settings</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
