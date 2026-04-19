@@ -1,0 +1,84 @@
+/* Buy-page specific hero override */
+.hero-bg-buy {
+  background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85') !important;
+}
+
+/* Segment cards redesign */
+.segments-section {
+  padding: 100px 56px;
+  background: var(--walnut);
+  position: relative; overflow: hidden;
+}
+.segments-section::before {
+  content: 'EXPLORE';
+  position: absolute; bottom: -20px; right: -10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 160px; font-weight: 600;
+  color: rgba(238,220,194,0.03); letter-spacing: 16px;
+  pointer-events: none; white-space: nowrap;
+}
+.segments-section .section-header { margin-bottom: 56px; max-width: 1248px; margin-left: auto; margin-right: auto; }
+.segments-grid-new {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  max-width: 1248px; margin: 0 auto;
+}
+.seg-card {
+  position: relative; border-radius: 22px; overflow: hidden;
+  height: 400px; cursor: none;
+  box-shadow: 0 16px 48px rgba(30,20,16,0.3);
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+}
+.seg-card:hover { transform: scale(1.03); }
+.seg-card:hover .seg-bg { transform: scale(1.09); }
+.seg-card:hover .seg-info { transform: translateY(0); }
+.seg-bg {
+  width: 100%; height: 100%; background-size: cover; background-position: center;
+  transition: transform .7s cubic-bezier(.25,.46,.45,.94);
+}
+.seg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(20,12,10,.95) 0%, rgba(20,12,10,.4) 50%, rgba(20,12,10,.1) 100%);
+}
+.seg-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 24px;
+  transform: translateY(4px); transition: transform .4s;
+}
+.seg-icon-line {
+  width: 32px; height: 2px; background: var(--cream-dk);
+  border-radius: 2px; margin-bottom: 14px; opacity: .7;
+}
+.seg-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; color: white;
+  margin-bottom: 8px; line-height: 1.1;
+}
+.seg-count {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--cream-dk); opacity: .75; margin-bottom: 16px;
+}
+.seg-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--cream-dk); text-decoration: none;
+  border-bottom: 1px solid rgba(238,220,194,0.4); padding-bottom: 3px;
+  transition: color .3s, gap .3s;
+}
+.seg-cta:hover { color: white; gap: 12px; }
+
+.seg-bg-land { background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80'); }
+.seg-bg-house { background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80'); }
+.seg-bg-flat { background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80'); }
+.seg-bg-villa { background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80'); }
+.seg-bg-pent { background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80'); }
+
+@media (max-width: 1024px) {
+  .segments-grid-new { grid-template-columns: repeat(3, 1fr); }
+  .seg-card { height: 320px; }
+  .segments-section { padding: 72px 24px; }
+}
+@media (max-width: 680px) {
+  .segments-grid-new { grid-template-columns: 1fr 1fr; }
+}
