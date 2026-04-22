@@ -201,21 +201,314 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .sell-stats { grid-template-columns: 1fr 1fr; }
-  .sell-why { grid-template-columns: 1fr; }
-  .sell-why-img { height: 380px; }
-  .sell-why-content { padding: 56px 32px; }
-  .sell-process { padding: 72px 24px; }
-  .process-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-  .process-grid::before { display: none; }
-  .sell-testi-grid { grid-template-columns: 1fr; }
-  .sell-form-section { padding: 72px 24px; }
-  .sell-form-inner { grid-template-columns: 1fr; gap: 48px; }
-  .form-row { grid-template-columns: 1fr; }
-  .sell-form { padding: 36px 28px; }
-  .sell-testi { padding: 72px 24px; }
+  .sell-stats { 
+    grid-template-columns: 1fr 1fr; 
+    padding: 52px 24px;
+  }
+  .sell-why { 
+    grid-template-columns: 1fr; 
+  }
+  .sell-why-img { 
+    height: 300px; 
+  }
+  .sell-why-content { 
+    padding: 48px 32px; 
+  }
+  .sell-process { 
+    padding: 60px 24px; 
+  }
+  .process-grid { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 32px; 
+  }
+  .process-grid::before { 
+    display: none; 
+  }
+  .sell-testi-grid { 
+    grid-template-columns: 1fr; 
+  }
+  .sell-form-section { 
+    padding: 60px 24px; 
+  }
+  .sell-form-inner { 
+    grid-template-columns: 1fr; 
+    gap: 40px; 
+  }
+  .form-row { 
+    grid-template-columns: 1fr; 
+  }
+  .sell-form { 
+    padding: 32px 24px; 
+  }
+  .sell-testi { 
+    padding: 60px 24px; 
+  }
+  .sell-form-section::before {
+    font-size: 140px;
+    bottom: -20px;
+  }
 }
-@media (max-width: 680px) {
-  .sell-stats { grid-template-columns: 1fr 1fr; padding: 48px 24px; }
-  .process-grid { grid-template-columns: 1fr; }
+
+@media (max-width: 768px) {
+  .sell-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 40px 16px;
+  }
+  .sell-stat {
+    padding: 20px 16px;
+    border-right: none;
+    border-bottom: 1px solid rgba(238,220,194,0.12);
+  }
+  .sell-stat:last-child {
+    border-bottom: none;
+  }
+  .sell-stat-num {
+    font-size: 42px;
+  }
+  .sell-stat-label {
+    font-size: 9px;
+  }
+  
+  .sell-why-img {
+    height: 250px;
+  }
+  .sell-why-content {
+    padding: 36px 24px;
+  }
+  .sell-why-content h2 {
+    font-size: 28px;
+  }
+  .sell-why-content p {
+    font-size: 14px;
+  }
+  .sell-why-points li {
+    padding: 12px 0;
+    font-size: 13px;
+  }
+  .sell-why-num {
+    font-size: 20px;
+    min-width: 28px;
+  }
+
+  .sell-process {
+    padding: 50px 16px;
+  }
+  .process-header {
+    margin-bottom: 40px;
+  }
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .process-num-wrap {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .process-title {
+    font-size: 18px;
+  }
+  .process-desc {
+    font-size: 12px;
+  }
+
+  .sell-testi {
+    padding: 50px 16px;
+  }
+  .sell-testi-header {
+    margin-bottom: 32px;
+  }
+  .sell-testi-grid {
+    gap: 16px;
+  }
+  .sell-review-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+  .sell-review-quote {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .sell-review-name {
+    font-size: 12px;
+  }
+
+  .sell-form-section {
+    padding: 50px 16px;
+  }
+  .sell-form-left h2 {
+    font-size: 26px;
+  }
+  .sell-form-contact-list li {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+  .sell-form {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+  .form-heading {
+    font-size: 22px;
+  }
+  .form-subhead {
+    font-size: 12px;
+  }
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 14px !important;
+    padding: 12px 14px;
+    border-radius: 10px;
+  }
+  .form-textarea {
+    min-height: 100px;
+  }
+  .form-submit {
+    padding: 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sell-stats {
+    padding: 32px 12px;
+  }
+  .sell-stat-num {
+    font-size: 36px;
+  }
+
+  .sell-why {
+    grid-template-columns: 1fr;
+  }
+  .sell-why-img {
+    height: 200px;
+  }
+  .sell-why-content {
+    padding: 28px 16px;
+  }
+  .sell-why-content h2 {
+    font-size: 22px;
+  }
+  .sell-why-content p {
+    font-size: 12px;
+    margin-bottom: 24px;
+  }
+  .sell-why-points li {
+    padding: 10px 0;
+    font-size: 12px;
+    gap: 10px;
+  }
+  .sell-why-num {
+    font-size: 18px;
+  }
+
+  .sell-process {
+    padding: 40px 12px;
+  }
+  .process-grid {
+    gap: 20px;
+  }
+  .process-step {
+    padding: 0 12px;
+  }
+  .process-num-wrap {
+    width: 52px;
+    height: 52px;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .process-title {
+    font-size: 16px;
+  }
+  .process-desc {
+    font-size: 11px;
+  }
+
+  .sell-testi {
+    padding: 40px 12px;
+  }
+  .sell-testi-grid {
+    gap: 12px;
+  }
+  .sell-review-card {
+    padding: 20px 16px;
+    border-left: 3px solid var(--walnut);
+    border-radius: 12px;
+  }
+  .sell-review-stars {
+    font-size: 12px;
+  }
+  .sell-review-quote {
+    font-size: 13px;
+  }
+  .sell-review-name {
+    font-size: 11px;
+  }
+  .sell-review-role {
+    font-size: 10px;
+  }
+
+  .sell-form-section {
+    padding: 40px 12px;
+  }
+  .sell-form-inner {
+    gap: 32px;
+  }
+  .sell-form-left h2 {
+    font-size: 22px;
+  }
+  .sell-form-left p {
+    font-size: 12px;
+  }
+  .sell-form-contact-list li {
+    font-size: 11px;
+    padding: 8px 0;
+    gap: 10px;
+  }
+  .contact-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .contact-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .sell-form {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  .form-heading {
+    font-size: 20px;
+  }
+  .form-subhead {
+    font-size: 11px;
+  }
+  .form-row {
+    gap: 12px;
+  }
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 14px !important;
+    padding: 11px 12px;
+    border-radius: 8px;
+  }
+  .form-textarea {
+    min-height: 90px;
+  }
+  .form-submit {
+    padding: 10px;
+    font-size: 10px;
+  }
+  .form-note {
+    font-size: 10px;
+  }
+
+  .sell-form-section::before {
+    font-size: 100px;
+    letter-spacing: 8px;
+  }
 }

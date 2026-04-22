@@ -434,18 +434,441 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .about-manifesto-inner { grid-template-columns: 1fr; gap: 48px; }
-  .about-founder-inner { grid-template-columns: 1fr; gap: 48px; }
-  .founder-img { height: 400px; }
-  .values-grid { grid-template-columns: 1fr 1fr; }
-  .team-grid { grid-template-columns: 1fr 1fr; }
-  .ecosystem-grid { grid-template-columns: 1fr 1fr; }
-  .about-stats { grid-template-columns: 1fr 1fr; }
-  .about-manifesto, .about-values, .about-founder, .about-journey,
-  .about-team, .about-ecosystem { padding: 80px 24px; }
+  .about-hero {
+    min-height: 600px;
+  }
+  .about-hero h1 {
+    font-size: clamp(40px, 6vw, 72px);
+  }
+  .about-hero-sub {
+    font-size: 14px;
+  }
+
+  .about-manifesto { 
+    padding: 80px 24px; 
+  }
+  .about-manifesto-inner { 
+    grid-template-columns: 1fr; 
+    gap: 48px; 
+  }
+  .manifesto-left h2 {
+    font-size: 36px;
+  }
+  .manifesto-text {
+    font-size: 14px;
+  }
+
+  .about-values { 
+    padding: 80px 24px; 
+  }
+  .values-grid { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+  }
+  .value-card {
+    padding: 36px 28px;
+  }
+  .value-num {
+    font-size: 36px;
+  }
+  .value-title {
+    font-size: 20px;
+  }
+
+  .about-founder { 
+    padding: 80px 24px; 
+  }
+  .about-founder-inner { 
+    grid-template-columns: 1fr; 
+    gap: 48px; 
+  }
+  .founder-img { 
+    height: 400px; 
+  }
+  .founder-content h2 {
+    font-size: 32px;
+  }
+
+  .about-journey { 
+    padding: 80px 24px; 
+  }
+  .timeline-items {
+    gap: 32px;
+  }
+
+  .about-team { 
+    padding: 80px 24px; 
+  }
+  .team-grid { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 28px;
+  }
+  .team-member-card {
+    border-radius: 20px;
+  }
+
+  .about-ecosystem { 
+    padding: 80px 24px; 
+  }
+  .ecosystem-grid { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+  }
+  .eco-card {
+    padding: 32px 24px;
+  }
+
+  .about-stats { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 24px;
+  }
 }
-@media (max-width: 680px) {
-  .values-grid, .ecosystem-grid { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-  .about-stats { grid-template-columns: 1fr 1fr; padding: 48px 24px; }
+
+@media (max-width: 768px) {
+  .about-hero {
+    min-height: 500px;
+    padding-top: 60px;
+  }
+  .about-hero-eyebrow {
+    font-size: 10px;
+    gap: 12px;
+  }
+  .about-hero-eyebrow::before,
+  .about-hero-eyebrow::after {
+    width: 30px;
+  }
+  .about-hero h1 {
+    font-size: clamp(32px, 5vw, 60px);
+    margin-bottom: 16px;
+  }
+  .about-hero-sub {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .about-manifesto {
+    padding: 60px 16px;
+  }
+  .about-manifesto-inner {
+    gap: 40px;
+  }
+  .manifesto-left .section-eyebrow {
+    margin-bottom: 14px;
+  }
+  .manifesto-left h2 {
+    font-size: 28px;
+  }
+  .manifesto-text {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .manifesto-sig-line {
+    width: 36px;
+  }
+
+  .about-values {
+    padding: 60px 16px;
+  }
+  .values-header {
+    margin-bottom: 40px;
+  }
+  .values-header h2 {
+    font-size: 32px;
+  }
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .value-card {
+    padding: 28px 20px;
+  }
+  .value-num {
+    font-size: 28px;
+  }
+  .value-title {
+    font-size: 18px;
+  }
+  .value-desc {
+    font-size: 12px;
+  }
+
+  .about-founder {
+    padding: 60px 16px;
+  }
+  .about-founder-inner {
+    gap: 40px;
+  }
+  .founder-img {
+    height: 300px;
+    border-radius: 16px;
+  }
+  .founder-content h2 {
+    font-size: 28px;
+  }
+  .founder-content p {
+    font-size: 13px;
+  }
+
+  .about-journey {
+    padding: 60px 16px;
+  }
+  .journey-header h2 {
+    font-size: 32px;
+  }
+  .timeline-items {
+    gap: 28px;
+  }
+  .timeline-item {
+    padding: 28px 24px;
+    border-radius: 14px;
+  }
+  .timeline-year {
+    font-size: 20px;
+  }
+  .timeline-title {
+    font-size: 16px;
+  }
+  .timeline-desc {
+    font-size: 12px;
+  }
+
+  .about-team {
+    padding: 60px 16px;
+  }
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .team-member-card {
+    border-radius: 16px;
+    padding: 24px 20px;
+  }
+  .member-img {
+    height: 240px;
+  }
+  .member-name {
+    font-size: 16px;
+  }
+  .member-role {
+    font-size: 12px;
+  }
+
+  .about-ecosystem {
+    padding: 60px 16px;
+  }
+  .ecosystem-header h2 {
+    font-size: 32px;
+  }
+  .ecosystem-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .eco-card {
+    padding: 24px 20px;
+  }
+  .eco-num {
+    font-size: 32px;
+  }
+  .eco-title {
+    font-size: 18px;
+  }
+  .eco-desc {
+    font-size: 12px;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 40px 16px;
+  }
+  .stats-item {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    min-height: 450px;
+    padding-top: 50px;
+  }
+  .about-hero-eyebrow {
+    font-size: 8px;
+    gap: 8px;
+    letter-spacing: 3px;
+  }
+  .about-hero-eyebrow::before,
+  .about-hero-eyebrow::after {
+    width: 20px;
+  }
+  .about-hero h1 {
+    font-size: clamp(24px, 4vw, 48px);
+    margin-bottom: 12px;
+  }
+  .about-hero-sub {
+    font-size: 12px;
+  }
+
+  .about-manifesto {
+    padding: 40px 12px;
+  }
+  .about-manifesto-inner {
+    gap: 32px;
+  }
+  .manifesto-left .section-eyebrow {
+    font-size: 7px;
+  }
+  .manifesto-left h2 {
+    font-size: 22px;
+  }
+  .manifesto-text {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .manifesto-text p {
+    margin-bottom: 16px;
+  }
+  .manifesto-sig {
+    margin-top: 28px;
+  }
+  .manifesto-sig-line {
+    width: 28px;
+  }
+  .manifesto-sig-name {
+    font-size: 11px;
+  }
+
+  .about-values {
+    padding: 40px 12px;
+  }
+  .values-header {
+    margin-bottom: 32px;
+  }
+  .values-header .section-eyebrow {
+    font-size: 7px;
+  }
+  .values-header h2 {
+    font-size: 24px;
+  }
+  .values-grid {
+    gap: 12px;
+  }
+  .value-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+  .value-num {
+    font-size: 20px;
+  }
+  .value-title {
+    font-size: 15px;
+  }
+  .value-desc {
+    font-size: 11px;
+  }
+
+  .about-founder {
+    padding: 40px 12px;
+  }
+  .about-founder-inner {
+    gap: 28px;
+  }
+  .founder-img {
+    height: 240px;
+    border-radius: 12px;
+  }
+  .founder-content h2 {
+    font-size: 22px;
+  }
+  .founder-content p {
+    font-size: 12px;
+  }
+  .founder-content .btn {
+    width: 100%;
+  }
+
+  .about-journey {
+    padding: 40px 12px;
+  }
+  .journey-header {
+    margin-bottom: 32px;
+  }
+  .journey-header h2 {
+    font-size: 24px;
+  }
+  .timeline-items {
+    gap: 16px;
+  }
+  .timeline-item {
+    padding: 20px 16px;
+  }
+  .timeline-year {
+    font-size: 18px;
+  }
+  .timeline-title {
+    font-size: 14px;
+  }
+  .timeline-desc {
+    font-size: 11px;
+  }
+
+  .about-team {
+    padding: 40px 12px;
+  }
+  .team-header {
+    margin-bottom: 32px;
+  }
+  .team-header h2 {
+    font-size: 24px;
+  }
+  .team-grid {
+    gap: 16px;
+  }
+  .team-member-card {
+    padding: 16px 14px;
+    border-radius: 12px;
+  }
+  .member-img {
+    height: 180px;
+    border-radius: 10px;
+  }
+  .member-name {
+    font-size: 14px;
+  }
+  .member-role {
+    font-size: 11px;
+  }
+
+  .about-ecosystem {
+    padding: 40px 12px;
+  }
+  .ecosystem-header {
+    margin-bottom: 32px;
+  }
+  .ecosystem-header h2 {
+    font-size: 24px;
+  }
+  .ecosystem-grid {
+    gap: 12px;
+  }
+  .eco-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+  .eco-num {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .eco-title {
+    font-size: 15px;
+  }
+  .eco-desc {
+    font-size: 11px;
+  }
+
+  .about-stats {
+    padding: 32px 12px;
+  }
+  .stats-item {
+    padding: 16px 12px;
+  }
 }

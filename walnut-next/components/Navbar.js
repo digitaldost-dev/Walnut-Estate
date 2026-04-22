@@ -1,10 +1,11 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 export default function Navbar() {
   const navRef = useRef(null);
   const logoRef = useRef(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const navbar = navRef.current;
@@ -16,6 +17,21 @@ export default function Navbar() {
     };
     window.addEventListener('scroll', onScroll);
     onScroll();
+    
+    // Close mobile menu on route change
+    const handleClickOutside = (e) => {
+      if (navbar && !navbar.contains(e.target)) {
+        setMobileMenuOpen(false);
+      }
+    };
+    
+    if (mobileMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
 
     // Logo cleanup (transparent bg + walnut logo mark)
     if (logoImg) {
@@ -60,8 +76,17 @@ export default function Navbar() {
 
     return () => {
       window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, [mobileMenuOpen]);
+
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleMobileMenuLinkClick = () => {
+    setMobileMenuOpen(false);
+  };
 
   return (
     <nav id="navbar" ref={navRef}>
@@ -82,9 +107,25 @@ export default function Navbar() {
         <li><a href="tel:+917234000088" className="nav-phone">+91 72340 00088</a></li>
         <li><a href="#" className="nav-cta">Enquire Now</a></li>
       </ul>
-      <button className="nav-hamburger" aria-label="Menu">
+      <button 
+        className={`nav-hamburger ${mobileMenuOpen ? 'active' : ''}`} 
+        aria-label="Menu"
+        onClick={handleMobileMenuToggle}
+      >
         <span></span><span></span><span></span>
       </button>
+      
+      {/* Mobile Menu */}
+      <div className={`nav-mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="nav-mobile-links">
+          <Link href="/buy" onClick={handleMobileMenuLinkClick}>Buy</Link>
+          <Link href="/sell" onClick={handleMobileMenuLinkClick}>Sell</Link>
+          <Link href="/about" onClick={handleMobileMenuLinkClick}>About</Link>
+          <Link href="/contact" onClick={handleMobileMenuLinkClick}>Contact</Link>
+          <a href="tel:+917234000088">+91 72340 00088</a>
+          <a href="#" className="nav-mobile-cta">Enquire Now</a>
+        </div>
+      </div>
     </nav>
   );
 }
