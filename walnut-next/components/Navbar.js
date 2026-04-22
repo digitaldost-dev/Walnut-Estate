@@ -78,6 +78,7 @@ export default function Navbar() {
         <li><Link href="/buy">Buy</Link></li>
         <li><Link href="/sell">Sell</Link></li>
         <li><Link href="/about">About</Link></li>
+        <li><Link href="/contact">Contact</Link></li>
         <li><a href="tel:+917234000088" className="nav-phone">+91 72340 00088</a></li>
         <li><a href="#" className="nav-cta">Enquire Now</a></li>
       </ul>
